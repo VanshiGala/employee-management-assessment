@@ -189,10 +189,16 @@ frontend/
 
 ---
 
-## Notes
+## Notes/Limitations:
 
 * **Toast Notifications:** All validation and server errors are displayed using toast notifications for easy admin feedback.
 * **Image Upload:** Uses multer to store photos in `/uploads` directory.
 * **Search & Filter:** Fully functional combined search + filters for `fullName`.
-
+* **The app currently works well on desktop screens; mobile responsiveness is limited and can be improved in future updates.
+* **Admin-only access is implemented; non-admin users receive a “403 Access Denied” response for protected routes.
+* **Validation errors are displayed via toast notifications for better feedback.
+* **Currently, employee photos are stored locally using multer. Using Cloudinary for cloud storage is a possible improvement for scalability.
+* **The app works well on desktop screens; mobile responsiveness is limited and can be improved.
+* **Admin-only access is implemented; non-admin users receive a “403 Access Denied” response.
+**Validation errors are displayed via toast notifications.
 
