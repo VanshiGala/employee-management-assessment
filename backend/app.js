@@ -1,6 +1,7 @@
 import express from 'express'
 import dotnenv from 'dotenv'
 dotnenv.config()
+
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import conn from './config/dbConfig.js'
@@ -11,18 +12,20 @@ import { fileURLToPath } from "url";
 import seedAdmin from './seedAdmin.js'
 
 const app = express()
-conn();
 
-await seedAdmin();
+app.use(cors({
+    origin:"*"
+}))
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({
-    origin:"*"
-}))
+
+conn();
+await seedAdmin();
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/auth", authRoute);
 app.use("/api/employees", empRoute);
