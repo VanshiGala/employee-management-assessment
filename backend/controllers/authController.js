@@ -30,7 +30,7 @@ export const loginUser = async (req, res) => {
   }
 
   if (user.role !== "admin") {
-    console.log("Blocked non-admin login");
+    //console.log("Blocked non-admin login");
     return res.status(403).json({ message: "Access denied. Admin only." });
   }
 

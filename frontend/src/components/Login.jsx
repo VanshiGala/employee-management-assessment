@@ -12,7 +12,7 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("FUNCTION STARTED");
+    //console.log("FUNCTION STARTED");
 
     if (!email.trim()) {
       toast.error("Email is required");
@@ -41,7 +41,7 @@ function Login() {
         password,
       });
 
-      console.log("Login response:", data);
+      //console.log("Login response:", data);
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
@@ -49,8 +49,8 @@ function Login() {
       toast.success("Login successful!");
       navigate("/dashboard");
     } catch (error) {
-      console.log("LOGIN ERROR:", error);
-      console.log("ERROR RESPONSE:", error.response);
+      //console.log("LOGIN ERROR:", error);
+      //console.log("ERROR RESPONSE:", error.response);
 
       toast.error(error.response?.data?.message || "Invalid credentials");
     }
