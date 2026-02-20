@@ -14,19 +14,24 @@ export const loginUser = async (req, res) => {
   //console.log("Incoming password:", password);
 
   const user = await User.findOne({ email });
-
+//console.log("LOGIN USER:", user.email, "ROLE:", user.role);
   //console.log("User from DB:", user);
 
   if (!user) {
     return res.status(401).json({ message: "Invalid credentials - no user" });
   }
-
+   //console.log("User role:", user.role);
   const isMatch = await bcrypt.compare(password, user.password);
 
   //console.log("Password match result:", isMatch);
 
   if (!isMatch) {
     return res.status(401).json({ message: "Invalid credentials - password wrong" });
+  }
+
+  if (user.role !== "admin") {
+    console.log("Blocked non-admin login");
+    return res.status(403).json({ message: "Access denied. Admin only." });
   }
 
   res.status(200).json({
