@@ -35,10 +35,6 @@ function Login() {
       toast.error("Password must be at least 6 characters");
       return;
     }
-    if (user.role !== "admin") {
-      toast.error("Not accessible" );
-      }
-
     try {
       const { data } = await API.post("/auth/login", {
         email,
