@@ -10,12 +10,12 @@ const generateToken = (user) => {
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
-  console.log("Incoming email:", email);
-  console.log("Incoming password:", password);
+  //console.log("Incoming email:", email);
+  //console.log("Incoming password:", password);
 
   const user = await User.findOne({ email });
 
-  console.log("User from DB:", user);
+  //console.log("User from DB:", user);
 
   if (!user) {
     return res.status(401).json({ message: "Invalid credentials - no user" });
@@ -23,7 +23,7 @@ export const loginUser = async (req, res) => {
 
   const isMatch = await bcrypt.compare(password, user.password);
 
-  console.log("Password match result:", isMatch);
+  //console.log("Password match result:", isMatch);
 
   if (!isMatch) {
     return res.status(401).json({ message: "Invalid credentials - password wrong" });
