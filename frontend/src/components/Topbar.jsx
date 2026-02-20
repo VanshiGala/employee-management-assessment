@@ -1,15 +1,5 @@
-//  function Topbar() {
-//   return (
-//     <div className="ml-46 h-14 bg-white flex items-center justify-between px-6 border-b border-blue-500">
-//       <h2 className="text-blue-400 text-lg">Employee Setup</h2>
-//       <div className="text-white text-xl">👤</div>
-//     </div>
-//   );
-// }
-// export default Topbar
-
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 
 function Topbar() {
   const [user, setUser] = useState("");
@@ -17,8 +7,8 @@ function Topbar() {
 
   useEffect(() => {
     // Get token from localStorage
-    const token = localStorage.getItem("token");
-    const storedUser = localStorage.getItem("user");
+    const token = localStorage.getItem("token",data.token);
+    const storedUser = localStorage.getItem("user",JSON.stringify(data.user));
     if (!token || !storedUser) {
       navigate("/"); // redirect if not logged in
     } else {

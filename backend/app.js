@@ -8,17 +8,20 @@ import authRoute from "./routes/authRoute.js"
 import empRoute from "./routes/empRoute.js";
 import path from 'path'
 import { fileURLToPath } from "url";
+import seedAdmin from './seedAdmin.js'
 
+const app = express()
 conn();
+
+await seedAdmin();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:"*"
+    origin:["*","http://localhost:5173",]
 }))
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/auth", authRoute);
