@@ -21,7 +21,7 @@ const __dirname = path.dirname(__filename);
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:["*","http://localhost:5173",]
+    origin:"*"
 }))
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/auth", authRoute);
