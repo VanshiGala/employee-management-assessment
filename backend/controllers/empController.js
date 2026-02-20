@@ -46,7 +46,12 @@ export const getEmployees = async (req, res) => {
   if (designation) query.designation = designation;
   if (gender) query.gender = gender;
 
-  const employees = await Employee.find(query).sort({ createdAt: -1 });
+  try {
+    const employees = await Employee.find(query).sort({ createdAt: -1 });
+    res.json(employees);
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error });
+  }
 
   res.json(employees);
 };
