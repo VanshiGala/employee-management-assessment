@@ -24,7 +24,7 @@ function Topbar() {
     } else {
       try {
         // Decode token to get user info
-       setUser(JSON.parse(storedUser).email);
+        setUser(JSON.parse(storedUser).email);
       } catch (error) {
         console.error("Invalid token");
         navigate("/");
@@ -39,19 +39,21 @@ function Topbar() {
   };
 
   return (
-    <div className="ml-46 h-14 bg-white flex items-center justify-between px-6 border-b border-blue-500">
-      <h2 className="text-blue-400 text-lg">Employee Setup</h2>
-      <div className="flex items-center gap-4">
-        <span className="text-blue-400">Hello {user}</span>
-        <button
-          onClick={handleLogout}
-          className="bg-blue-400 text-white px-3 py-1 rounded hover:bg-blue-500"
-        >
-          Logout
-        </button>
-      </div>
-    </div>
-  );
-}
+        <div className="ml-46 h-14 bg-white flex items-center justify-between px-6 border-b border-blue-500">
+          <h2 className="text-blue-400 text-lg">Employee Setup</h2>
+          <div className="flex items-center gap-4">
+            <span className="text-blue-400">Hello {user}</span>
+            <button
+              onClick={handleLogout}
+              className="bg-blue-400 text-white px-3 py-1 rounded hover:bg-blue-500"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    
 
 export default Topbar;
