@@ -41,14 +41,16 @@ function EmpTable({employees}) {
                 <td>
                   {emp.photo ? (
                     <img
-                      src={`/uploads/${emp.photo}`}
+                      src={`${import.meta.env.VITE_API_URL}/uploads/${emp.photo}`}
                       className="w-10 h-10 mx-auto rounded-full"
                     />
                   ) : (
                     "📎"
                   )}
                 </td>
-                <td><img src={action} className='w-12'/></td>
+                <td>
+                  <img src={action} className="w-12" />
+                </td>
               </tr>
             ))
           )}

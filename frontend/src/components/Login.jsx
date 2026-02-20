@@ -7,6 +7,8 @@ import toast from 'react-hot-toast'
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -55,9 +57,10 @@ function Login() {
           Welcome to HR Admin Panel
         </p>
 
-        <div className="mt-6 space-y-4">
-          <form onSubmit={handleLogin}>
-            <label className="text-blue-500">User Name</label>
+        <form onSubmit={handleLogin} className="mt-6 space-y-4">
+          {/* USERNAME */}
+          <div>
+            <label className="text-blue-500 block mb-1">User Name</label>
             <input
               type="email"
               placeholder="Enter User Name"
@@ -65,24 +68,50 @@ function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <br />
-            <label className="text-blue-500">Enter Password</label>
-            <input
-              type="password"
-              placeholder="Enter Password"
-              className="w-full border p-2 rounded"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          </div>
 
-            <button
-              onClick={() => navigate("/dashboard")}
-              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-            >
-              Login
-            </button>
-          </form>
-        </div>
+          {/* PASSWORD */}
+          <div>
+            <label className="text-blue-500 block mb-1">Enter Password</label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter Password"
+                className="w-full border p-2 rounded pr-10"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+
+              {/* Show Password Toggle */}
+              <span
+                className="absolute right-3 top-2 cursor-pointer text-sm text-gray-600"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </span>
+            </div>
+          </div>
+
+          {/* REMEMBER ME */}
+          <div className="flex items-center justify-between">
+            <label className="flex items-center space-x-2 text-sm text-gray-600">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+              />
+              <span>Remember Me</span>
+            </label>
+          </div>
+
+          {/* LOGIN BUTTON */}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          >
+            Login
+          </button>
+        </form>
       </div>
     </div>
   );
